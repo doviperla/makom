@@ -13,7 +13,7 @@ services:
             context: ./service
             dockerfile: Dockerfile.dev
         volumes:
-            - /app/node_module
+            - /app/node_modules
             - ./service/config:/app/config
             - ./service/src:/app/src
             - ./service/test:/app/test
