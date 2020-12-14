@@ -1,19 +1,20 @@
 {
-    "name": "makom",
-    "version": "0.1.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-       "docker:build": "docker-compose -p {makom} build",
-       "docker:down": "docker-compose -p {makom} down",
-       "docker:up": "docker-compose -p {makom} up",
-       "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-      "type": "git",
-      "url": ""
-    },
-    "keywords": [],
-    "author": "",
-    "license": "SEE LICENSE IN LICENSE.txt"
-  }
+  "name": "makom",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docker:build": "docker-compose -p {makom} build",
+    "docker:down": "docker-compose -p {makom} down",
+    "docker:up": "docker-compose -p {makom} up",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "dependencies": {}
+}

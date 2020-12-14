@@ -5,7 +5,9 @@ services:
         ports:
             - "5432:5432"
         environment:
-            POSTGRES_PASSWORD: mypassword
+            POSTGRES_PASSWORD: password
+            POSTGRES_USER: app
+            POSTGRES_DB: db
         volumes:
             - ./postgresql/data:/var/lib/postgresql/data
     service:
@@ -19,6 +21,9 @@ services:
             - ./service/test:/app/test
         ports:
             - "3005:3005"
+        depends_on:
+            postgres:
+                condition: service_started
     ui:
         build:
             context: ./ui
