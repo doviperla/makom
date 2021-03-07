@@ -1,10 +1,15 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('pepole', {
-    femaly_name: {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      primaryKey:true
+    },
+    first_name: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    private_name: {
+    last_name: {
       type: DataTypes.STRING,
       allowNull: true
     },
@@ -75,6 +80,10 @@ module.exports = function(sequelize, DataTypes) {
     paid_up: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    pepole_list_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {
     sequelize,
