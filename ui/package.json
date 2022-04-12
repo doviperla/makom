@@ -11,15 +11,21 @@
     "axios": "^0.21.1",
     "lodash": "^4.17.21",
     "react": "^17.0.1",
+    "react-autocomplete": "^1.8.1",
+    "react-color": "^2.19.3",
     "react-contenteditable": "^3.3.5",
+    "react-contextmenu": "^2.14.0",
     "react-csv": "^2.0.3",
     "react-csv-reader": "^3.3.0",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-semantic-toasts": "^0.6.5",
+    "react-tooltip": "^4.2.21",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.3",
-    "web-vitals": "^0.2.4"
+    "semantic-ui-react": "^2.0.4",
+    "web-vitals": "^0.2.4",
+    "x-data-spreadsheet": "^1.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,5 +50,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "typescript": "^4.3.5",
+    "xspreadsheet": "^1.0.4"
   }
 }

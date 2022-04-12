@@ -1,8 +1,56 @@
-const pepole = require("../models/pepole");
 const integer_keys = ["places_count", "amount_per_place", "mens_rosh_ashana", "womens_rosh_ashana", "mens_kipur", "womens_kipur", "sum", "paid_up"];
 
 module.exports.checkConnection = (req, res) => {
     res.status(200).json({ success: true });
+}
+
+// module.exports.getListsNames = async (req, res) => {
+//     try {
+//         const PepoleList = req.models.pepole_list;
+//         const list_names = await PepoleList.findAll().select('name')
+//         res.status(200).json({ success: true, list_names: list_names });
+//     }
+//     catch (ex) {
+//         console.log(ex);
+//         res.status(500).json({ success: false, error: ex });
+//     }
+// }
+
+module.exports.updateMap = async (req, res) => {
+    try {
+        const PepoleList = req.models.pepole_list;
+        const Pepole = req.models.pepole;
+
+        let pepole_list_id = req.body.pepole_list_id;
+        let map = req.body.map;
+        let pepole = req.body.pepole;
+        let turim = req.body.turim;
+
+        PepoleList.update({ map: map, turim: turim },
+            {
+                where: {
+                    id: pepole_list_id
+                }
+            });
+
+        for (let index = 0; index < pepole.length; index++) {
+            let row = pepole[index];
+            row = _initIntegerTypes(row);
+            if (row.changed) {
+                await Pepole.update(row, {
+                    where: {
+                        id: row.id
+                    }
+                });
+            }
+        }
+
+        res.status(200).json({ success: true });
+    }
+    catch (ex) {
+        console.log(ex);
+        res.status(500).json({ success: false, error: ex });
+    }
 }
 
 module.exports.getAllPepoles = async (req, res) => {
@@ -17,14 +65,17 @@ module.exports.getAllPepoles = async (req, res) => {
             pepole_lists = await PepoleList.findAll();
             pepole_list_id = pepole_lists[pepole_lists.length - 1].id;
         }
-
+        else {
+            pepole_lists = await PepoleList.findAll({
+                where: {
+                    id: pepole_list_id
+                }
+            });
+        }
         const data = await Pepole.findAll({
             where: {
                 pepole_list_id: pepole_list_id
-            },
-            order: [
-                ['last_name', 'ASC'],
-            ],
+            }
         });
 
         res.status(200).json({ success: true, pepole: data, pepole_lists: pepole_lists });
@@ -53,7 +104,7 @@ module.exports.updateList = async (req, res) => {
             if (row.added)
                 await Pepole.create(row);
         }
-        res.status(200).json({ success: true });;
+        res.status(200).json({ success: true });
     }
     catch (ex) {
         console.log(ex);

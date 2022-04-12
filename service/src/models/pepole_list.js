@@ -12,6 +12,14 @@ module.exports = function (sequelize, DataTypes) {
         accountId: {
             type: DataTypes.INTEGER,
             allowNull: false
+        },
+        map: {
+            type: DataTypes.JSON,
+            allowNull: true
+        },
+        turim: {
+            type: DataTypes.JSON,
+            allowNull: true
         }
     }, {
         sequelize,

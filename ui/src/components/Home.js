@@ -24,6 +24,7 @@ import ContentEditable from 'react-contenteditable'
 import axiosInterceptor from '../utils/interceptor'
 import { CSVLink } from "react-csv";
 import CSVReader from 'react-csv-reader';
+import { Route } from 'react-router-dom'
 
 let search_timeout;
 
@@ -343,6 +344,7 @@ export class ListPage extends React.Component {
             uploadError = "סוג הקובץ אינו נתמך"
         if (uploadError == "") {
             if (data.length > 0) {
+                console.log(data)
                 for (let header of HEADERS) {
                     const headerFind = data[0].find((d) => d.replace('"', '') === header.title.replace('"', ''));
                     if (!headerFind) {
@@ -352,21 +354,25 @@ export class ListPage extends React.Component {
                 }
             }
         }
-        if (uploadError == "") {
-            for (let row of data) {
-                if (row.length != HEADERS.length) {
-                    uploadError = "כמות התאים אינה זהה לנדרש"
-                    break;
-                }
-            }
+        //     if (uploadError == "") {
+        //         for (let row of data) {
+        //             console.log(row.length)
+        //             if (row && row.length != HEADERS.length) {
+        //                 console.log(row);
+        //                 console.log(HEADERS.length)
 
-        }
-        if (uploadError != "") {
-            uploadError += `
-       ! נסה להוריד את הטבלה הקיימת כדי לראות דוגמה לקובץ תקין`
-            this.setState({ error: uploadError, isLoading: false })
-        }
-        else {
+        //                 uploadError = "כמות התאים אינה זהה לנדרש"
+        //                 break;
+        //             }
+        //         }
+
+        //     }
+        //     if (uploadError != "") {
+        //         uploadError += `
+        //    ! נסה להוריד את הטבלה הקיימת כדי לראות דוגמה לקובץ תקין`
+        //         this.setState({ error: uploadError, isLoading: false })
+        //     }
+        if (uploadError == "") {
             const pepole_list_id = new Date().getTime()
             const pepole_list = {
                 id: pepole_list_id,
@@ -377,6 +383,7 @@ export class ListPage extends React.Component {
 
             for (let index = 1; index < data.length; index++) {
                 const element = data[index];
+                console.log(element)
                 let pepole_row = {};
                 pepole_row.id = new Date().getTime() + index;
 
@@ -600,6 +607,16 @@ export class ListPage extends React.Component {
                                             <Icon name='save outline' />
                             </Button>
                         }
+
+                        <Route render={({ history }) => (
+                            <Button onClick={() => {
+                                history.push('/')
+                            }} color={'yellow'}
+                            >
+                                מעבר למפה
+                                <Icon name='map' />
+                            </Button>
+                        )} />
 
                     </div>
 

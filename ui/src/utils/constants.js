@@ -1,5 +1,6 @@
-export const CURRENT_VERSION = '1.0.0'
-export const API = 'http://ec2-18-195-114-103.eu-central-1.compute.amazonaws.com:3000/api/';
+export const CURRENT_VERSION = '1.1.0'
+// export const API = 'http://3.64.131.64:3000/api/';
+export const API = 'http://localhost:3005/api/'
 
 export const HEADERS = [
     { title: 'שם פרטי', key: "first_name", type: "string" }

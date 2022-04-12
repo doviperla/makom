@@ -66,6 +66,11 @@ _initModulesServerRoutes = (app, models, passport) => {
         next();
     }, pepoleController.getAllPepoles);
 
+    router.use('/pepole/update-map', middleware.validateToken, (req, res, next) => {
+        req.models = models;
+        next();
+    }, pepoleController.updateMap);
+
     router.use('/pepole/update-list', middleware.validateToken, (req, res, next) => {
         req.pepole = models.pepole;
         next();

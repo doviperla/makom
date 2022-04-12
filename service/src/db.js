@@ -5,7 +5,8 @@ let _sequelize = null;
 
 module.exports.init = async () => {
     try {
-        const connection_string = "postgres://makom_admin:bfaknmt8!@test.cdmerudpsum2.eu-central-1.rds.amazonaws.com:5432/makom";
+        const connection_string = "postgres://imedis_admin:1nc1d3nt4L@localhost:2744/makom";
+        // const connection_string = "postgres://makom_admin:bfaknmt8!@test.csewenyqwx9l.eu-central-1.rds.amazonaws.com:2744/makom";
         const sequelize = new Sequelize(connection_string);
         await sequelize.authenticate();
         await init_models(sequelize);
