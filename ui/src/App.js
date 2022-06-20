@@ -1,5 +1,4 @@
 import './App.css';
-import styles from './styles';
 // import 'semantic-ui-css/semantic.min.css';
 import { ListPage } from './components/Home';
 import { LoginPage } from './components/Login';

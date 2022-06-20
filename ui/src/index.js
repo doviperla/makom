@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './style/semantic-ui-css/semantic.min.css';
+import "./style/loader-css/react-spinner-loader.css";
+import './style/xspreadsheet.css';
 
 ReactDOM.render(
   <React.StrictMode>

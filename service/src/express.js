@@ -12,7 +12,7 @@ const middleware = require('./helpers/middleware');
 const PORT = 3005;
 const HOST = 'localhost';
 
-module.exports.init = (models, passport) => {
+module.exports.init = (passport) => {
     let app = express();
     app.use(bodyParser.urlencoded({
         limit: '50mb',
@@ -25,7 +25,7 @@ module.exports.init = (models, passport) => {
     app.use(passport.initialize());
     app.use(passport.session());
     _initCors(app);
-    _initModulesServerRoutes(app, models, passport);
+    _initModulesServerRoutes(app, passport);
     app.listen(PORT, HOST, () => {
         console.log(chalk.green.bold(`Web server started on http://${HOST}:${PORT}`));
     })
@@ -52,7 +52,7 @@ _initCors = (app) => {
     app.use('*', cors(corsOptions));
 }
 
-_initModulesServerRoutes = (app, models, passport) => {
+_initModulesServerRoutes = (app, passport) => {
     app.use('/api', router);
 
     router.use('/pepole/check-connection', pepoleController.checkConnection)
@@ -61,39 +61,22 @@ _initModulesServerRoutes = (app, models, passport) => {
 
     router.use('/auth/logout', userController.logout);
 
-    router.use('/pepole/get-all', middleware.validateToken, (req, res, next) => {
-        req.models = models;
-        next();
-    }, pepoleController.getAllPepoles);
+    router.use('/pepole/get-pepole-lists', middleware.validateToken, pepoleController.getPepoleLists);
 
-    router.use('/pepole/update-map', middleware.validateToken, (req, res, next) => {
-        req.models = models;
-        next();
-    }, pepoleController.updateMap);
+    router.use('/pepole/get-pepole-data', middleware.validateToken, pepoleController.getPepoleData);
 
-    router.use('/pepole/update-list', middleware.validateToken, (req, res, next) => {
-        req.pepole = models.pepole;
-        next();
-    }, pepoleController.updateList);
+    router.use('/pepole/update-map', middleware.validateToken,  pepoleController.updateMap);
 
-    router.use('/pepole/delete-row', middleware.validateToken, (req, res, next) => {
-        req.pepole = models.pepole;
-        next();
-    }, pepoleController.deleteRow);
+    router.use('/pepole/get-map', middleware.validateToken, pepoleController.getMap);
 
-    router.use('/pepole/add-new-list', middleware.validateToken, (req, res, next) => {
-        req.models = models;
-        next();
-    }, pepoleController.addNewList);
+    router.use('/pepole/update-list', middleware.validateToken, pepoleController.updateList);
 
-    router.use('/pepole/delete-list', middleware.validateToken, (req, res, next) => {
-        req.models = models;
-        next();
-    }, pepoleController.deleteList);
+    router.use('/pepole/delete-row', middleware.validateToken, pepoleController.deleteRow);
 
-    router.use('/pepole/change-name-list', middleware.validateToken, (req, res, next) => {
-        req.models = models;
-        next();
-    }, pepoleController.changeNameList);
+    router.use('/pepole/add-new-list', middleware.validateToken, pepoleController.addNewList);
+
+    router.use('/pepole/delete-list', middleware.validateToken, pepoleController.deleteList);
+
+    router.use('/pepole/change-name-list', middleware.validateToken, pepoleController.changeNameList);
 
 };

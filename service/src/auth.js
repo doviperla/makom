@@ -1,10 +1,10 @@
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
+const db = require("./models");
 
-module.exports.init = (models) => {
-    const Users = models.users;
-    const Account = models.account;
-    const PepoleList = models.pepole_list;
+module.exports.init = () => {
+    const Users = db.Users;
+    const Account = db.Account;
 
     passport.use('local', new Strategy(
         {

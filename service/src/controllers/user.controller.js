@@ -6,9 +6,9 @@ module.exports.isLogin = (req, res) => {
     res.status(200).json({ success: true });
 }
 
-module.exports.login = function (req, res, next) {
+module.exports.login = (req, res, next) => {
     try {
-        passport.authenticate('local', function (err, user, info) {
+        passport.authenticate('local', (err, user, info) => {
             if (err) {
                 return res.json(500, {
                     success: false,

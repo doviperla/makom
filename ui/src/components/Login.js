@@ -7,8 +7,10 @@ import {
     Button,
     Icon,
     Container,
-    Form
+    Form,
+    Image
 } from 'semantic-ui-react';
+import LOGO from '../images/makom_logo.jpg'
 
 export class LoginPage extends React.Component {
     constructor(props) {
@@ -64,14 +66,19 @@ export class LoginPage extends React.Component {
         if (login_success)
             window.location.reload();
         return (
-            <div >
-                <Label content={versionLabel} attached="top right" size={'large'} />
+            <div style={{ backgroundColor: '#E8E8E8', height: '100%' }} >
+                {/* <Label content={versionLabel} attached="top right" size={'large'} /> */}
                 <Label attached="bottom right" size={'large'}>
                     Copyright
-            <Icon name={'copyright outline'} style={{ marginLeft: '5px', marginRight: '5px' }} />
+                    <Icon name={'copyright outline'} style={{ marginLeft: '5px', marginRight: '5px' }} />
                     {new Date().getFullYear()} Dovi Perla All Rights Reserved
-          </Label>
+                </Label>
+
                 <Container textAlign={'center'} text>
+                    <br />
+                    <Image style={{ margin: 'auto' }} src={LOGO} rounded></Image>
+                    <br />
+
                     <Form error={this.state.error != null}>
                         {/* <Image src={LOGO} centered inline circular /> */}
                         <Message floating>
